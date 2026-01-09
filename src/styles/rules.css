@@ -1,196 +1,154 @@
 /* =========================================
-   RULES MODAL (Guidebook) - Retro Arcade Style
+   RULES MODAL – LAYOUT & NAVIGATION
    ========================================= */
-
-.guidebook {
-    /* Uklanjamo stare tamne boje */
-    background: #ffffff;
-    color: #2d3436; /* Tamno sivi tekst */
-    font-family: 'VT323', monospace;
-    font-size: 1.3rem;
-    line-height: 1.6;
-    position: relative;
-    width: 100%;
-    /* Uklanjamo stare bordere i senke */
-    border: none; 
-    box-shadow: none;
-    padding: 0; /* Padding sada kontroliše modal-content u global.css */
-}
-
-/* Uklanjamo stari "tape" efekat i dashed border */
-.guidebook:before,
-.guidebook:after {
-    display: none;
-}
-
-/* =========================================
-   TYPOGRAPHY
-   ========================================= */
-
-h1 {
-    color: #6c5ce7; /* Ljubičasti naslov */
-    font-family: 'Press Start 2P', cursive;
-    font-size: 1.8rem;
-    text-shadow: 2px 2px 0px #a29bfe;
-    border-bottom: 4px solid #dfe6e9;
+.rules-layout {
+    display: flex;
+    gap: 1.5rem;
+    text-align: left;
+    height: 60vh;
+    border-bottom: 2px solid #dfe6e9;
     padding-bottom: 1rem;
-    margin: 0 0 1.5rem 0;
-    text-align: center;
-    line-height: 1.4;
-}
-
-h1 .subtitle {
-    display: block;
-    font-family: 'VT323', monospace;
-    font-size: 1.2rem;
-    color: #636e72;
-    text-shadow: none;
-    margin-top: 0.5rem;
-    font-weight: normal;
-}
-
-h2 {
-    color: #e17055; /* Narandžasti podnaslovi */
-    font-family: 'Press Start 2P', cursive;
-    font-size: 1.1rem;
-    margin-top: 0;
-    display: inline-block;
-    border-bottom: none;
-    text-align: center;
-    line-height: 1.5;
-}
-
-h3 {
-    color: #0984e3; /* Plavi manji naslovi */
-    font-family: 'Press Start 2P', cursive;
-    font-size: 1rem;
     margin-bottom: 1rem;
 }
 
-ul, ol {
-    list-style-position: inside;
-    padding-left: 0;
+/* =========================================
+   SIDEBAR NAVIGATION
+   ========================================= */
+.rules-sidebar {
+    flex: 0 0 180px;
+    border-right: 3px dashed #b2bec3;
+    padding-right: 1rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.nav-item {
+    background: #dfe6e9;
+    border: none;
+    padding: 0.8rem;
     text-align: left;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+    color: #636e72;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+    line-height: 1.4;
 }
 
-li {
-    margin-bottom: 0.8rem;
+.nav-item:hover {
+    background: #74b9ff;
+    color: white;
+    transform: translateX(5px);
 }
 
-strong {
-    color: #d63031; /* Crveno za bitne reči */
-    font-weight: bold;
+.nav-item.active {
+    background: #6c5ce7;
+    color: white;
+    box-shadow: 2px 2px 0 #a29bfe;
 }
 
 /* =========================================
-   SLIDES & ANIMATION
+   CONTENT AREA
    ========================================= */
-
-#slides-container {
-    min-height: 350px;
-    position: relative;
-    background: #f4f0e6; /* Blago bež pozadina za tekst */
-    padding: 1.5rem;
-    border-radius: 1rem;
-    border: 2px solid #fab1a0; /* Svetlo narandžasti okvir */
+.rules-content-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 1.5rem;
 }
 
-.slide {
-    display: block; /* React kontroliše šta se prikazuje, ovo je samo kontejner */
-    text-align: left;
-    animation: fadeIn 0.4s ease-in-out;
+.rules-content-area::-webkit-scrollbar {
+    width: 8px;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(5px); }
-    to { opacity: 1; transform: translateY(0); }
+.rules-content-area::-webkit-scrollbar-thumb {
+    background-color: #fab1a0;
+    border-radius: 4px;
 }
 
 /* =========================================
-   FINAL WORDS SECTION
+   CONTENT TYPOGRAPHY
    ========================================= */
-
-.final-words {
-    margin-top: 1rem;
-    padding: 1.5rem;
-    border: 3px dashed #74b9ff;
-    background: #dff9fb; /* Svetlo plava */
-    border-radius: 1rem;
-    text-align: center;
+.rules-content-area h2 {
+    color: #4917de;
+    font-size: 1.4rem;
+    border-bottom: 2px solid #fab1a0;
+    padding-bottom: 0.5rem;
+    margin-top: 0;
+    text-align: left;
 }
 
-.final-words h2 {
+.rules-content-area h3 {
     color: #0984e3;
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    text-align: left;
+}
+
+.rules-content-area ul,
+.rules-content-area ol {
+    padding-left: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.rules-content-area li {
+    margin-bottom: 1.5rem;
+    font-family: 'VT323', monospace;
     font-size: 1.2rem;
-    margin: 1rem 0;
+}
+
+.rules-content-area p {
+    font-family: 'VT323', monospace;
+    font-size: 1.5rem;
+    color: #2d3436;
+    margin-bottom: 1rem;
 }
 
 /* =========================================
-   NAVIGATION
+   BOTTOM NAVIGATION
    ========================================= */
-
-.navigation {
+.bottom-navigation {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 1.5rem;
-    border-top: 4px solid #dfe6e9;
-    padding-top: 1.5rem;
+    margin-top: 1rem;
 }
 
 #slideCounter {
     font-family: 'Press Start 2P', cursive;
-    font-size: 1rem;
-    color: #b2bec3; /* Siva boja za brojač */
-    background: #2d3436;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-}
-
-/* Navigation Buttons override */
-.navigation .button {
-    margin: 0; /* Reset margine da lepo stoje levo i desno */
     font-size: 0.8rem;
-}
-
-.navigation .button:disabled {
-    background: #dfe6e9;
-    border-color: #b2bec3;
-    color: #636e72;
-    cursor: not-allowed;
-    box-shadow: none;
-    transform: none;
+    color: #b2bec3;
 }
 
 /* =========================================
    MOBILE RESPONSIVE
    ========================================= */
-
 @media screen and (max-width: 600px) {
-    .guidebook {
-        font-size: 1.1rem;
+    .rules-layout {
+        flex-direction: column;
+        height: 65vh;
     }
 
-    h1 {
-        font-size: 1.4rem;
+    .rules-sidebar {
+        flex: 0 0 auto;
+        flex-direction: row;
+        border-right: none;
+        border-bottom: 3px dashed #b2bec3;
+        padding-right: 0;
+        padding-bottom: 1rem;
+        width: 100%;
+        overflow-x: auto;
     }
 
-    #slides-container {
-        min-height: auto;
-        padding: 1rem;
+    .nav-item {
+        white-space: nowrap;
+        flex: 0 0 auto;
     }
 
-    .final-words {
-        padding: 1rem;
-    }
-
-    .navigation {
-        padding-top: 1rem;
-        margin-top: 1rem;
-    }
-
-    #slideCounter {
-        font-size: 0.8rem;
-        padding: 0.4rem 0.6rem;
+    .rules-content-area h2 {
+        font-size: 1.2rem;
     }
 }

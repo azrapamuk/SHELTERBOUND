@@ -1,5 +1,5 @@
 /* =========================================
-   OSNOVNI STILOVI (Global - Light & Colorful)
+   BASE STYLES 
    ========================================= */
 body {
     font-family: 'VT323', monospace;
@@ -10,8 +10,7 @@ body {
     background: #f4f0e6;
     color: #2d3436;
     text-align: center;
-    /* Dodajemo ovo da sprečimo horizontalno skrolowanje celog sajta */
-    overflow-x: hidden; 
+    overflow-x: hidden;
 }
 
 h1, h2 {
@@ -19,13 +18,10 @@ h1, h2 {
     text-transform: uppercase;
     color: #e17055;
     text-shadow: 2px 2px 0px #fab1a0;
-    
-    /* === OVO REŠAVA PROBLEM PRELIVANJA === */
-    word-wrap: break-word; /* Dozvoli prelazak u novi red */
+    word-wrap: break-word;
     overflow-wrap: break-word;
-    max-width: 100%; /* Ne sme biti šire od ekrana */
-    line-height: 1.4; /* Razmak između redova ako se prelomi */
-    /* ===================================== */
+    max-width: 100%;
+    line-height: 1.4;
 }
 
 h2 {
@@ -42,7 +38,7 @@ p {
 }
 
 /* =========================================
-   DUGMAD (Vibrant & Pop)
+   BUTTONS
    ========================================= */
 .button,
 button {
@@ -76,7 +72,7 @@ button:active {
 }
 
 /* =========================================
-   MODAL OKVIR (Clean White)
+   MODAL CONTAINER
    ========================================= */
 .modal-overlay {
     position: fixed;
@@ -108,7 +104,7 @@ button:active {
 }
 
 /* =========================================
-   ANIMACIJE
+   ANIMATIONS
    ========================================= */
 @keyframes flicker {
     0%, 100% { opacity: 1; }
@@ -122,25 +118,25 @@ button:active {
 }
 
 /* =========================================
-   MOBILE RESPONSIVE (Najbitniji deo)
+   MOBILE RESPONSIVE
    ========================================= */
 @media screen and (max-width: 600px) {
-    /* Smanjujemo naslov H2 da stane u ekran */
     h2 {
-        font-size: 1.3rem; 
-        padding: 0 10px; /* Malo prostora sa strane */
+        font-size: 1.3rem;
+        padding: 0 10px;
     }
 
-    /* Smanjujemo i glavni naslov H1 ako ga ima */
     h1 {
         font-size: 1.5rem;
     }
 
-    .button, button {
+    .button,
+    button {
         font-size: 0.7rem;
         padding: 0.6rem 0.8rem;
         margin: 0.3rem;
     }
+
     .modal-content {
         width: 95%;
         padding: 1rem;

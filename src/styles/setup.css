@@ -1,17 +1,16 @@
 /* =========================================
    GAME SETUP MODAL (Pop Style)
    ========================================= */
-
 #setupModal h1 {
     font-size: 2.2rem;
     margin-top: 1rem;
     margin-bottom: 1.5rem;
-    color: #6c5ce7; /* Ljubičasti naslov */
+    color: #6c5ce7;
     text-shadow: 2px 2px 0px #a29bfe;
 }
 
 #setupModal .game-setup-area {
-    background: #f7f1e3; /* Veoma svetlo žuta/bež unutar modala */
+    background: #f7f1e3;
     padding: 1.5rem;
     border-radius: 1rem;
     border: 3px dashed #b2bec3;
@@ -26,7 +25,9 @@
     font-weight: bold;
 }
 
-/* Preporuka (Plavi Info Box) */
+/* =========================================
+   RECOMMENDATION BOX
+   ========================================= */
 .recommendation-text {
     color: #0984e3;
     font-size: 1.1rem;
@@ -38,14 +39,15 @@
     line-height: 1.6;
 }
 
-/* Calculate Button (Običan stil, nasleđuje global) */
+/* =========================================
+   BUTTONS
+   ========================================= */
 #calculateTilesBtn {
     width: 100%;
     margin-left: 0;
     margin-right: 0;
 }
 
-/* Proceed Dugme (Jarko zeleno) */
 #proceedToGameBtn {
     margin-top: 2rem;
     background: #00b894;
@@ -62,7 +64,9 @@
     box-shadow: 0 2px 0 #004245;
 }
 
-/* Mobile Setup */
+/* =========================================
+   MOBILE RESPONSIVE
+   ========================================= */
 @media screen and (max-width: 600px) {
     #setupModal h1 { font-size: 1.6rem; }
     #setupModal .game-setup-area { padding: 1rem; }
