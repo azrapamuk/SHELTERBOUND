@@ -1,0 +1,184 @@
+/* =========================================
+   GLAVNA IGRA (Colorful Arcade Style)
+   ========================================= */
+
+section {
+    margin: 2rem 0;
+    border: 4px solid #dfe6e9;
+    padding: 2rem;
+    border-radius: 1rem;
+    background: #ffffff; /* Bela kartica */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+#timerDisplay {
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 2rem 0;
+    font-family: 'Press Start 2P', cursive;
+    color: #d63031; /* Jarka crvena */
+    text-shadow: 2px 2px 0px #ff7675;
+    animation: flicker 2s infinite;
+}
+
+.hidden-timer {
+    display: none;
+}
+
+/* Reset dugme (Crveno) */
+.reset-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #ff7675 !important;
+    border-color: #d63031 !important;
+    box-shadow: 0 4px 0 #d63031 !important;
+}
+.reset-btn:hover {
+    background-color: #d63031 !important;
+}
+
+/* Rules dugme (Ljubičasto) */
+#rulesButton {
+    visibility: visible;
+    margin-top: 2rem; /* Malo razmaka */
+    
+    /* Stil dugmeta */
+    background-color: #6c5ce7 !important; /* Ljubičasta pozadina */
+    color: white !important;
+    border: 3px solid #a29bfe !important; /* Svetlija ljubičasta ivica */
+    border-radius: 0.8rem;
+    padding: 0.75rem 1.5rem;
+    
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1rem !important;
+    text-transform: uppercase;
+    text-decoration: none !important;
+    cursor: pointer;
+    
+    /* 3D Efekat */
+    box-shadow: 0 4px 0 #a29bfe !important;
+    transition: all 0.1s;
+    
+    /* Centriranje ako je potrebno */
+    display: inline-block;
+}
+
+#rulesButton:hover {
+    background-color: #5f27cd !important;
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #a29bfe !important;
+}
+
+#rulesButton:active {
+    transform: translateY(4px);
+    box-shadow: none !important;
+}
+
+/* PROGRESS BAR */
+#progressBarContainer {
+    width: 100%;
+    height: 35px;
+    background-color: #dfe6e9;
+    border: 3px solid #636e72;
+    border-radius: 20px; /* Zaobljena traka */
+    margin: 2rem auto;
+    padding: 0;
+    overflow: hidden; /* Da unutrašnja traka ne prelazi ivice */
+    display: none;
+}
+
+#progressBar {
+    width: 100%;
+    height: 100%;
+    background-color: #00b894; /* Početna zelena */
+    transition: width 0.5s linear, background-color 0.5s ease-in-out;
+}
+
+#progressBar.progress-bar-urgent {
+    background-color: #fdcb6e; /* Žuta upozorenja */
+}
+
+#progressBar.progress-bar-critical {
+    background-color: #d63031; /* Crvena opasnost */
+}
+
+#progressBarContainer.progress-bar-shaking {
+    animation: shake 0.2s infinite;
+    border-color: #d63031;
+}
+
+/* =========================================
+   END OF ROUND DISPLAY
+   ========================================= */
+
+.end-round-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    animation: fadeIn 0.5s ease-in;
+    width: 100%; /* Osigurava da kontejner ne probija ekran */
+    overflow: hidden; /* Za svaki slučaj */
+}
+
+.day-complete-text {
+    font-size: 1.5rem;
+    color: #2d3436;
+    font-family: 'Press Start 2P', cursive;
+    margin-bottom: 0.5rem;
+}
+
+.needed-supply-label {
+    font-size: 1rem;
+    color: #636e72;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.supply-name-large {
+    font-family: 'Press Start 2P', cursive;
+    text-transform: uppercase;
+    text-shadow: 3px 3px 0px rgba(0,0,0,0.1);
+    margin-top: 0.5rem;
+    line-height: 1.2;
+    
+    /* === OVO SPREČAVA PRELAZAK U NOVI RED === */
+    white-space: nowrap; 
+    /* ======================================== */
+    
+    font-size: 2.5rem; /* Default veličina za desktop */
+}
+
+/* BOJE */
+.supply-food { color: #e67e22; text-shadow: 3px 3px 0px #fad390; }
+.supply-entertainment { color: #9b59b6; text-shadow: 3px 3px 0px #d2b4de; }
+.supply-weapon { color: #0984e3; text-shadow: 3px 3px 0px #74b9ff; }
+.supply-tool { color: #f1c40f; text-shadow: 3px 3px 0px #f9e79f; }
+
+/* =========================================
+   MOBILE ADJUSTMENTS
+   ========================================= */
+@media screen and (max-width: 600px) {
+    .day-complete-text {
+        font-size: 1.1rem;
+    }
+
+    .needed-supply-label {
+        font-size: 0.8rem;
+    }
+
+    /* Standardna veličina za kratke reči (FOOD, TOOL) na mobilnom */
+    .supply-name-large {
+        font-size: 2.2rem; 
+    }
+
+    /* === SMANJENA VELIČINA ZA DUGE REČI (ENTERTAINMENT) === */
+    /* Koristimo 'vw' (viewport width) da se prilagodi širini ekrana */
+    .supply-name-large.text-long {
+        font-size: 5vw; /* 8% širine ekrana - garantovano staje */
+    }
+}

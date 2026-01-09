@@ -1,0 +1,148 @@
+/* =========================================
+   OSNOVNI STILOVI (Global - Light & Colorful)
+   ========================================= */
+body {
+    font-family: 'VT323', monospace;
+    max-width: 720px;
+    margin: auto;
+    padding: 1rem;
+    line-height: 1.5;
+    background: #f4f0e6;
+    color: #2d3436;
+    text-align: center;
+    /* Dodajemo ovo da sprečimo horizontalno skrolowanje celog sajta */
+    overflow-x: hidden; 
+}
+
+h1, h2 {
+    font-family: 'Press Start 2P', cursive;
+    text-transform: uppercase;
+    color: #e17055;
+    text-shadow: 2px 2px 0px #fab1a0;
+    
+    /* === OVO REŠAVA PROBLEM PRELIVANJA === */
+    word-wrap: break-word; /* Dozvoli prelazak u novi red */
+    overflow-wrap: break-word;
+    max-width: 100%; /* Ne sme biti šire od ekrana */
+    line-height: 1.4; /* Razmak između redova ako se prelomi */
+    /* ===================================== */
+}
+
+h2 {
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    margin-top: 1.5rem;
+}
+
+p {
+    margin-bottom: 1.5rem;
+    color: #636e72;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+/* =========================================
+   DUGMAD (Vibrant & Pop)
+   ========================================= */
+.button,
+button {
+    cursor: pointer;
+    padding: .75rem 1.5rem;
+    border: 3px solid #0984e3;
+    border-radius: .8rem;
+    background: #74b9ff;
+    color: #ffffff;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    margin: 0.75rem;
+    transition: all 0.1s ease-in-out;
+    box-shadow: 0 4px 0 #0984e3;
+}
+
+.button:hover,
+button:hover {
+    background: #0984e3;
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #06528f;
+}
+
+.button:active,
+button:active {
+    transform: translateY(4px);
+    box-shadow: none;
+}
+
+/* =========================================
+   MODAL OKVIR (Clean White)
+   ========================================= */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(45, 52, 54, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.modal-content {
+    position: relative;
+    max-width: 720px;
+    width: 90%;
+    background: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    border: 4px solid #fab1a0;
+    padding: 2rem;
+    max-height: 90vh;
+    overflow-y: auto;
+    text-align: center;
+}
+
+/* =========================================
+   ANIMACIJE
+   ========================================= */
+@keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* =========================================
+   MOBILE RESPONSIVE (Najbitniji deo)
+   ========================================= */
+@media screen and (max-width: 600px) {
+    /* Smanjujemo naslov H2 da stane u ekran */
+    h2 {
+        font-size: 1.3rem; 
+        padding: 0 10px; /* Malo prostora sa strane */
+    }
+
+    /* Smanjujemo i glavni naslov H1 ako ga ima */
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .button, button {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.8rem;
+        margin: 0.3rem;
+    }
+    .modal-content {
+        width: 95%;
+        padding: 1rem;
+    }
+}

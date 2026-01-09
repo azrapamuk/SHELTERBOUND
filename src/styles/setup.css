@@ -1,0 +1,70 @@
+/* =========================================
+   GAME SETUP MODAL (Pop Style)
+   ========================================= */
+
+#setupModal h1 {
+    font-size: 2.2rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    color: #6c5ce7; /* Ljubičasti naslov */
+    text-shadow: 2px 2px 0px #a29bfe;
+}
+
+#setupModal .game-setup-area {
+    background: #f7f1e3; /* Veoma svetlo žuta/bež unutar modala */
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 3px dashed #b2bec3;
+    margin-top: 1.5rem;
+}
+
+#setupModal label {
+    display: block;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: #2d3436;
+    font-weight: bold;
+}
+
+/* Preporuka (Plavi Info Box) */
+.recommendation-text {
+    color: #0984e3;
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border: 2px solid #74b9ff;
+    background: #dff9fb;
+    border-radius: .5rem;
+    line-height: 1.6;
+}
+
+/* Calculate Button (Običan stil, nasleđuje global) */
+#calculateTilesBtn {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* Proceed Dugme (Jarko zeleno) */
+#proceedToGameBtn {
+    margin-top: 2rem;
+    background: #00b894;
+    border-color: #006266;
+    box-shadow: 0 4px 0 #006266;
+    color: white;
+    font-size: 1.1rem;
+    width: 100%;
+    margin-left: 0;
+}
+
+#proceedToGameBtn:hover {
+    background: #006266;
+    box-shadow: 0 2px 0 #004245;
+}
+
+/* Mobile Setup */
+@media screen and (max-width: 600px) {
+    #setupModal h1 { font-size: 1.6rem; }
+    #setupModal .game-setup-area { padding: 1rem; }
+    .recommendation-text { font-size: 0.9rem; }
+}
