@@ -95,8 +95,8 @@ export default function App() {
         if (!isActive || timeLeft <= 0) return;
 
         let tickSpeed = 1000;
-        if (timeLeft <= 5) tickSpeed = 200;
-        else if (timeLeft <= 20) tickSpeed = 500;
+        if (timeLeft <= 10) tickSpeed = 200;
+        else if (timeLeft <= 30) tickSpeed = 500;
 
         const soundInterval = setInterval(() => {
             if (tickSound.current) {
@@ -109,8 +109,8 @@ export default function App() {
     }, [isActive, timeLeft]);
 
     const getProgressBarClass = () => {
-        if (timeLeft <= 5) return 'progress-bar-critical';
-        if (timeLeft <= 20) return 'progress-bar-urgent';
+        if (timeLeft <= 10) return 'progress-bar-critical';
+        if (timeLeft <= 30) return 'progress-bar-urgent';
         return '';
     };
 
