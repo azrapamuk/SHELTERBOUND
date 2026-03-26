@@ -54,8 +54,8 @@ export default function GameSetupModal({
         setErrorMsg('');
         setRecommendation('');
         
-        if (numPlayers < 2 || numPlayers > 5) {
-            setErrorMsg("Please select between 2 and 5 survivors.");
+        if (numPlayers < 2 || numPlayers > 4) {
+            setErrorMsg("Please select between 2 and 4 survivors.");
             setShowProceed(false);
             return;
         }
@@ -77,7 +77,6 @@ export default function GameSetupModal({
             if (numPlayers === 2) { minRange = 24; maxRange = 32; }
             else if (numPlayers === 3) { minRange = 30; maxRange = 45; }
             else if (numPlayers === 4) { minRange = 40; maxRange = 52; }
-            else if (numPlayers === 5) { minRange = 45; maxRange = 60; }
 
             let possibleTotals = [];
             for (let i = minRange; i <= maxRange; i++) {
@@ -185,7 +184,7 @@ export default function GameSetupModal({
                             </label>
 
                             <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', marginBottom: '20px' }}>
-                                {[2, 3, 4, 5].map((count) => (
+                                {[2, 3, 4].map((count) => (
                                     <button
                                         key={count}
                                         onClick={() => setNumPlayers(count)}
