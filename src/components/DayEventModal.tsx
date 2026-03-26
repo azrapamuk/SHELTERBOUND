@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import '../styles/event.css';
 
 export interface DayEvent {
@@ -14,6 +15,12 @@ interface DayEventModalProps {
 }
 
 export default function DayEventModal({ event, onClose }: DayEventModalProps) {
+    useEffect(() => {
+        const audio = new Audio('/sounds/start_beep.mp3');
+        audio.volume = 0.4;
+        audio.play().catch(() => {});
+    }, []);
+
     return (
         <div className="modal-overlay">
             <div className={`modal-content event-modal ${event.accentClass}`}>
