@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import GameSetupModal from './components/GameSetupModal';
 import RulesModal from './components/RulesModal';
-import DayEventModal, {type DayEvent } from './components/DayEventModal';
+import DayEventModal, { type DayEvent } from './components/DayEventModal';
 import './styles/timer.css';
 import './styles/setup.css';
 import './styles/event.css';
@@ -56,90 +56,90 @@ const DAY_PHASE_EVENTS: DayEvent[] = [
         effectText: 'Until the end of the day, hesitation is penalised with -1 heart. Players should act immediately.',
         accentClass: 'event-chaos'
     },
-     {
-    id: 'critical_failure_day',
-    title: 'CRITICAL FAILURE DAY!',
-    description: 'The odds are stacked against you. Today, even the smallest mistake leads to catastrophe.',
-    effectText: 'Any roll of 1 automatically triggers a Disaster Tile effect until the end of the day.',
-    accentClass: 'event-danger'
-  },
-  {
-    id: 'sandstorm_blind_move',
-    title: 'SANDSTORM!',
-    description: 'Blinding dust clouds engulf the wasteland. Visibility is zero!',
-    effectText: 'Close your eyes, spin 3 times, and point at a random tile. Teleport there immediately.',
-    accentClass: 'event-chaos'
-  },
-  {
-    id: 'the_hunted',
-    title: 'THE HUNTED!',
-    description: 'Something massive is circling in the shadows. You can feel its breath on your neck.',
-    effectText: 'If you do not possess a WEAPON by the end of the day, you lose 1 Heart.',
-    accentClass: 'event-danger'
-  },
-  {
-    id: 'toxic_gas_leak',
-    title: 'TOXIC GAS LEAK!',
-    description: 'A foul, radioactive cloud is passing through. Stay vocal to keep your lungs clear.',
-    effectText: 'You must make a "fart noise" before every move until the end of the day. Failure to do so results in -1 Heart penalty.',
-    accentClass: 'event-chaos'
-  },
-  {
-    id: 'raiders_attack',
-    title: 'RAIDERS ATTACK!',
-    description: 'Savage scavengers are raiding everyone in sight. Protect your stash!',
-    effectText: 'Any player holding more than 3 Supplies must immediately discard 1 random Supply item.',
-    accentClass: 'event-danger'
-  },
-  {
-    id: 'adrenaline_surge',
-    title: 'ADRENALINE SURGE!',
-    description: 'Panic sets in. There is no time to think, only to act. Move or die!',
-    effectText: 'Players must take their turn within 5 seconds. If they fail, their turn is skipped.',
-    accentClass: 'event-chaos'
-  },
-  {
-    id: 'silent_wasteland',
-    title: 'SILENT WASTELAND!',
-    description: 'The desert echoes every sound. Even a whisper could give away your position.',
-    effectText: 'Total silence required. Any player who speaks or laughs out loud loses 1 Heart.',
-    accentClass: 'event-danger'
-  },
-  {
-    id: 'mirage_madness',
-    title: 'MIRAGE MADNESS!',
-    description: 'The heat is melting your mind. Is that an oasis or just burning sand?',
-    effectText: 'When moving, you must point to a tile other than the one you actually intend to move to.',
-    accentClass: 'event-chaos'
-  },
-  {
-    id: 'supply_drop',
-    title: 'SUPPLY DROP!',
-    description: 'A crate falls from a passing freighter. A rare stroke of luck in this hellhole.',
-    effectText: 'Choose one: Take 1 random Supply item OR gain +2 movement immediately.',
-    accentClass: 'event-bonus'
-  },
-  {
-    id: 'time_distortion',
-    title: 'TIME DISTORTION!',
-    description: 'The fabric of reality is thinning. For a moment, time feels like it is bending.',
-    effectText: 'Time glitch! All players immediately take two turns in a row.',
-    accentClass: 'event-bonus'
-  },
-  {
-    id: 'scorched_earth',
-    title: 'THE FLOOR IS LAVA!',
-    description: 'The ground is burning hot. Looking back is not an option.',
-    effectText: 'Landing on a previously visited tile is forbidden until the end of the day. Penalty for doing so is -1 Heart.',
-    accentClass: 'event-danger'
-  },
-  {
-    id: 'overloaded_penalty',
-    title: 'OVERLOADED!',
-    description: 'Your backpack is heavy and your feet are tired. You cannot carry it all.',
-    effectText: 'If your Shelter is at maximum capacity, you must immediately discard 1 item of your choice.',
-    accentClass: 'event-danger'
-  }
+    {
+        id: 'critical_failure_day',
+        title: 'CRITICAL FAILURE DAY!',
+        description: 'The odds are stacked against you. Today, even the smallest mistake leads to catastrophe.',
+        effectText: 'Any roll of 1 automatically triggers a Disaster Tile effect until the end of the day.',
+        accentClass: 'event-danger'
+    },
+    {
+        id: 'sandstorm_blind_move',
+        title: 'SANDSTORM!',
+        description: 'Blinding dust clouds engulf the wasteland. Visibility is zero!',
+        effectText: 'Close your eyes, spin 3 times, and point at a random tile. Teleport there immediately.',
+        accentClass: 'event-chaos'
+    },
+    {
+        id: 'the_hunted',
+        title: 'THE HUNTED!',
+        description: 'Something massive is circling in the shadows. You can feel its breath on your neck.',
+        effectText: 'If you do not possess a WEAPON by the end of the day, you lose 1 Heart.',
+        accentClass: 'event-danger'
+    },
+    {
+        id: 'toxic_gas_leak',
+        title: 'TOXIC GAS LEAK!',
+        description: 'A foul, radioactive cloud is passing through. Stay vocal to keep your lungs clear.',
+        effectText: 'You must make a "fart noise" before every move until the end of the day. Failure to do so results in -1 Heart penalty.',
+        accentClass: 'event-chaos'
+    },
+    {
+        id: 'raiders_attack',
+        title: 'RAIDERS ATTACK!',
+        description: 'Savage scavengers are raiding everyone in sight. Protect your stash!',
+        effectText: 'Any player holding more than 3 Supplies must immediately discard 1 random Supply item.',
+        accentClass: 'event-danger'
+    },
+    {
+        id: 'adrenaline_surge',
+        title: 'ADRENALINE SURGE!',
+        description: 'Panic sets in. There is no time to think, only to act. Move or die!',
+        effectText: 'Players must take their turn within 5 seconds. If they fail, their turn is skipped.',
+        accentClass: 'event-chaos'
+    },
+    {
+        id: 'silent_wasteland',
+        title: 'SILENT WASTELAND!',
+        description: 'The desert echoes every sound. Even a whisper could give away your position.',
+        effectText: 'Total silence required. Any player who speaks or laughs out loud loses 1 Heart.',
+        accentClass: 'event-danger'
+    },
+    {
+        id: 'mirage_madness',
+        title: 'MIRAGE MADNESS!',
+        description: 'The heat is melting your mind. Is that an oasis or just burning sand?',
+        effectText: 'When moving, you must point to a tile other than the one you actually intend to move to.',
+        accentClass: 'event-chaos'
+    },
+    {
+        id: 'supply_drop',
+        title: 'SUPPLY DROP!',
+        description: 'A crate falls from a passing freighter. A rare stroke of luck in this hellhole.',
+        effectText: 'Choose one: Take 1 random Supply item OR gain +2 movement immediately.',
+        accentClass: 'event-bonus'
+    },
+    {
+        id: 'time_distortion',
+        title: 'TIME DISTORTION!',
+        description: 'The fabric of reality is thinning. For a moment, time feels like it is bending.',
+        effectText: 'Time glitch! All players immediately take two turns in a row.',
+        accentClass: 'event-bonus'
+    },
+    {
+        id: 'scorched_earth',
+        title: 'THE FLOOR IS LAVA!',
+        description: 'The ground is burning hot. Looking back is not an option.',
+        effectText: 'Landing on a previously visited tile is forbidden until the end of the day. Penalty for doing so is -1 Heart.',
+        accentClass: 'event-danger'
+    },
+    {
+        id: 'overloaded_penalty',
+        title: 'OVERLOADED!',
+        description: 'Your backpack is heavy and your feet are tired. You cannot carry it all.',
+        effectText: 'If your Shelter is at maximum capacity, you must immediately discard 1 item of your choice.',
+        accentClass: 'event-danger'
+    }
 ];
 
 const getRandomDuration = () => {
@@ -161,7 +161,6 @@ const getRandomUniqueEventTimes = (duration: number) => {
 
     while (chosenTimes.length < eventCount) {
         const randomTime = getRandomInt(lowerBound, upperBound);
-
         const tooCloseToExisting = chosenTimes.some((time) => Math.abs(time - randomTime) < 15);
 
         if (!chosenTimes.includes(randomTime) && !tooCloseToExisting) {
@@ -199,6 +198,8 @@ export default function App() {
         return saved ? JSON.parse(saved) : null;
     });
 
+    const [showNeededSupplyModal, setShowNeededSupplyModal] = useState<boolean>(false);
+
     const [isActive, setIsActive] = useState<boolean>(false);
     const [numPlayers, setNumPlayers] = useState<number>(2);
 
@@ -220,6 +221,7 @@ export default function App() {
     const roundEndSound = useRef<HTMLAudioElement>(null);
     const gameEndSound = useRef<HTMLAudioElement>(null);
     const startSound = useRef<HTMLAudioElement>(null);
+    const roosterSound = useRef<HTMLAudioElement>(null);
     const savedSound = useRef<HTMLAudioElement>(null);
     const calculatingSound = useRef<HTMLAudioElement>(null);
 
@@ -238,7 +240,7 @@ export default function App() {
     useEffect(() => {
         let interval: any = null;
 
-        if (isActive && timeLeft > 0 && !showEventModal) {
+        if (isActive && timeLeft > 0 && !showEventModal && !showNeededSupplyModal) {
             interval = setInterval(() => {
                 setTimeLeft((prev) => prev - 1);
             }, 1000);
@@ -247,8 +249,6 @@ export default function App() {
 
             if (round < 10) {
                 if (roundEndSound.current) roundEndSound.current.play();
-                const randomSupply = SUPPLY_TYPES[Math.floor(Math.random() * SUPPLY_TYPES.length)];
-                setNeededSupply(randomSupply);
                 setRound((prev) => prev + 1);
             } else {
                 if (gameEndSound.current) gameEndSound.current.play();
@@ -256,10 +256,10 @@ export default function App() {
         }
 
         return () => clearInterval(interval);
-    }, [isActive, timeLeft, round, showEventModal]);
+    }, [isActive, timeLeft, round, showEventModal, showNeededSupplyModal]);
 
     useEffect(() => {
-        if (!isActive || timeLeft <= 0 || showEventModal) return;
+        if (!isActive || timeLeft <= 0 || showEventModal || showNeededSupplyModal) return;
 
         const shouldTrigger = scheduledEventTimes.includes(timeLeft) && !triggeredEventTimes.includes(timeLeft);
 
@@ -272,10 +272,18 @@ export default function App() {
             setShowEventModal(true);
             setIsActive(false);
         }
-    }, [timeLeft, isActive, scheduledEventTimes, triggeredEventTimes, usedEventIdsThisRound, showEventModal]);
+    }, [
+        timeLeft,
+        isActive,
+        scheduledEventTimes,
+        triggeredEventTimes,
+        usedEventIdsThisRound,
+        showEventModal,
+        showNeededSupplyModal
+    ]);
 
     useEffect(() => {
-        if (!isActive || timeLeft <= 0) return;
+        if (!isActive || timeLeft <= 0 || showNeededSupplyModal) return;
 
         let tickSpeed = 1000;
         if (timeLeft <= 10) tickSpeed = 200;
@@ -289,7 +297,7 @@ export default function App() {
         }, tickSpeed);
 
         return () => clearInterval(soundInterval);
-    }, [isActive, timeLeft]);
+    }, [isActive, timeLeft, showNeededSupplyModal]);
 
     const getProgressBarClass = () => {
         if (timeLeft <= 10) return 'progress-bar-critical';
@@ -308,14 +316,16 @@ export default function App() {
             setIsActive(true);
         } else {
             const newDuration = getRandomDuration();
+
             setRoundDuration(newDuration);
             setTimeLeft(newDuration);
-            setNeededSupply(null);
+
             setScheduledEventTimes(getRandomUniqueEventTimes(newDuration));
             setTriggeredEventTimes([]);
             setUsedEventIdsThisRound([]);
             setActiveEvent(null);
             setShowEventModal(false);
+            setShowNeededSupplyModal(false);
             setShowSetupModal(true);
         }
     };
@@ -339,10 +349,12 @@ export default function App() {
         setUsedEventIdsThisRound([]);
         setActiveEvent(null);
         setShowEventModal(false);
+        setShowNeededSupplyModal(false);
 
         localStorage.clear();
 
         setShowSetupModal(true);
+
         setTimeout(() => {
             window.location.reload();
         }, 100);
@@ -357,11 +369,20 @@ export default function App() {
 
         setShowSetupModal(false);
 
-        if (round === 0) setRound(1);
+        const randomSupply = SUPPLY_TYPES[Math.floor(Math.random() * SUPPLY_TYPES.length)];
+        setNeededSupply(randomSupply);
+        setShowNeededSupplyModal(true);
 
+        if (round === 0) {
+            setRound(1);
+        }
+    };
+
+    const handleCloseNeededSupplyModal = () => {
+        setShowNeededSupplyModal(false);
         setIsActive(true);
 
-        if (startSound.current) startSound.current.play();
+        if (roosterSound.current) roosterSound.current.play();
     };
 
     const handleCloseEventModal = () => {
@@ -389,6 +410,7 @@ export default function App() {
             <audio ref={roundEndSound} src="/sounds/buzzer.mp3" preload="auto"></audio>
             <audio ref={gameEndSound} src="/sounds/game_over.mp3" preload="auto"></audio>
             <audio ref={startSound} src="/sounds/start_beep.mp3" preload="auto"></audio>
+            <audio ref={roosterSound} src="/sounds/rooster.mp3" preload="auto"></audio>
             <audio ref={savedSound} src="/sounds/game_saved.mp3" preload="auto"></audio>
             <audio ref={calculatingSound} src="/sounds/calculating.mp3" preload="auto"></audio>
 
@@ -407,7 +429,7 @@ export default function App() {
                 <p>Prepare for 10 rounds of intense survival.</p>
 
                 <div className="timer-controls">
-                    {!isActive && !showEventModal && (
+                    {!isActive && !showEventModal && !showNeededSupplyModal && (
                         <button id="startTimer" className="button" onClick={handleStartClick}>
                             {getStartButtonText()}
                         </button>
@@ -439,7 +461,9 @@ export default function App() {
                 {neededSupply && timeLeft === 0 ? (
                     <div className="end-round-container">
                         <div className="day-complete-text">DAY COMPLETE!</div>
-                        <div className="needed-supply-label">NEEDED SUPPLY:</div>
+
+                        <div className="needed-supply-label">NEEDED SUPPLY WAS:</div>
+
                         <div
                             className={`
                                 supply-name-large
@@ -467,6 +491,37 @@ export default function App() {
 
             {showRulesModal && <RulesModal onClose={() => setShowRulesModal(false)} />}
 
+            {showNeededSupplyModal && neededSupply && (
+    <div className="needed-supply-overlay">
+        <div id="neededSupplyModal">
+            <h1>DAY {round === 0 ? 1 : round} REQUIRED SUPPLY</h1>
+
+            <div className="needed-supply-area">
+                <div className="needed-supply-label">
+                    COLLECT THIS DURING THE ROUND:
+                </div>
+
+                <div
+                    className={`
+                        supply-name-large
+                        ${neededSupply.cssClass}
+                        ${neededSupply.name.length > 8 ? 'text-long' : ''}
+                    `}
+                >
+                    {neededSupply.name}
+                </div>
+            </div>
+
+            <button
+                id="continueNeededSupplyBtn"
+                className="button"
+                onClick={handleCloseNeededSupplyModal}
+            >
+                CONTINUE
+            </button>
+        </div>
+    </div>
+)}
             {showEventModal && activeEvent && (
                 <DayEventModal
                     event={activeEvent}

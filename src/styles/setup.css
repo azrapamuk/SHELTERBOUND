@@ -72,3 +72,95 @@
     #setupModal .game-setup-area { padding: 1rem; }
     .recommendation-text { font-size: 0.9rem; }
 }
+
+/* =========================================
+   NEEDED SUPPLY MODAL 
+   ========================================= */
+
+.needed-supply-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(45, 52, 54, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+}
+
+#neededSupplyModal {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    border: 4px solid #6c5ce7;
+    box-shadow: 0 8px 0 #a29bfe;
+    width: min(90vw, 460px);
+    text-align: center;
+}
+
+#neededSupplyModal h1 {
+    font-size: 2.2rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    color: #6c5ce7;
+    text-shadow: 2px 2px 0px #a29bfe;
+}
+
+#neededSupplyModal .needed-supply-area {
+    background: #f7f1e3;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 3px dashed #b2bec3;
+    margin-top: 1.5rem;
+}
+
+#neededSupplyModal .needed-supply-label {
+    display: block;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: #2d3436;
+    font-weight: bold;
+}
+
+#continueNeededSupplyBtn {
+    margin-top: 2rem;
+    background: #00b894;
+    border-color: #006266;
+    box-shadow: 0 4px 0 #006266;
+    color: white;
+    font-size: 1.1rem;
+    width: 100%;
+    margin-left: 0;
+}
+
+#continueNeededSupplyBtn:hover {
+    background: #006266;
+    box-shadow: 0 2px 0 #004245;
+}
+
+@media screen and (max-width: 600px) {
+    #neededSupplyModal h1 {
+        font-size: 1.6rem;
+    }
+
+    #neededSupplyModal .needed-supply-area {
+        padding: 1rem;
+    }
+}
+
+.supply-name-large {
+    width: 100%;
+    max-width: 100%;
+    font-size: 2.5rem !important;
+    font-weight: 900;
+    text-align: center;
+
+    word-break: break-word;
+    overflow-wrap: anywhere;
+
+    line-height: 1.1;
+    white-space: normal;
+}
+
+.supply-name-large.text-long {
+    font-size: 1.8rem !important;
+}

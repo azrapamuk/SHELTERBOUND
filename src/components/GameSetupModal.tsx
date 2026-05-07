@@ -9,34 +9,33 @@ interface GameSetupModalProps {
     round: number;
 }
 
-export default function GameSetupModal({ 
-    numPlayers, 
-    setNumPlayers, 
-    onProceed, 
+export default function GameSetupModal({
+    numPlayers,
+    setNumPlayers,
+    onProceed,
     playCalculateSound,
     round
 }: GameSetupModalProps) {
-    
     const [recommendation, setRecommendation] = useState<string>('');
     const [showProceed, setShowProceed] = useState<boolean>(false);
     const [errorMsg, setErrorMsg] = useState<string>('');
 
     const isNewGame = round === 0;
 
-    const titleText = isNewGame 
-        ? "Prepare for the Apocalypse!" 
-        : "You Survived Another Night!";
+    const titleText = isNewGame
+        ? 'Prepare for the Apocalypse!'
+        : 'You Survived Another Night!';
 
-    const subTitleText = isNewGame 
-        ? "Game Setup" 
+    const subTitleText = isNewGame
+        ? 'Game Setup'
         : `Day ${round} Setup`;
 
-    const descText = isNewGame 
-        ? "Before you dive into the chaos, let's set up your board." 
-        : "The sun rises on a bleak world. Time to re-calculate the board tiles for the new day.";
-    
+    const descText = isNewGame
+        ? "Before you dive into the chaos, let's set up your board."
+        : 'The sun rises on a bleak world. Time to re-calculate the board tiles for the new day.';
+
     const buttonText = isNewGame
-        ? "Proceed to the Apocalypse!"
+        ? 'Proceed to the Apocalypse!'
         : `Proceed to Day ${round}!`;
 
     const [previousDayNumPlayers, setPreviousDayNumPlayers] = useState<number>(() => {
@@ -53,15 +52,15 @@ export default function GameSetupModal({
         playCalculateSound();
         setErrorMsg('');
         setRecommendation('');
-        
+
         if (numPlayers < 2 || numPlayers > 4) {
-            setErrorMsg("Please select between 2 and 4 survivors.");
+            setErrorMsg('Please select between 2 and 4 survivors.');
             setShowProceed(false);
             return;
         }
 
         if (!isNewGame && numPlayers > previousDayNumPlayers) {
-            setErrorMsg("Survivor count cannot be higher than yesterday.");
+            setErrorMsg('Survivor count cannot be higher than yesterday.');
             setShowProceed(false);
             return;
         }
@@ -72,39 +71,63 @@ export default function GameSetupModal({
 
         if (isNewGame) {
             let totalTiles = 0;
-            
-            let minRange = 0, maxRange = 0;
-            if (numPlayers === 2) { minRange = 24; maxRange = 32; }
-            else if (numPlayers === 3) { minRange = 30; maxRange = 45; }
-            else if (numPlayers === 4) { minRange = 40; maxRange = 52; }
 
-            let possibleTotals = [];
-            for (let i = minRange; i <= maxRange; i++) {
-                if (i % numPlayers === 0) possibleTotals.push(i);
+            let minRange = 0;
+            let maxRange = 0;
+
+            if (numPlayers === 2) {
+                minRange = 40;
+                maxRange = 48;
+            } else if (numPlayers === 3) {
+                minRange = 54;
+                maxRange = 66;
+            } else if (numPlayers === 4) {
+                minRange = 72;
+                maxRange = 84;
             }
 
-            if (possibleTotals.length === 0) totalTiles = minRange - (minRange % numPlayers) + numPlayers;
-            else totalTiles = possibleTotals[getRandomInt(0, possibleTotals.length - 1)];
-            
+            const possibleTotals: number[] = [];
+
+            for (let i = minRange; i <= maxRange; i++) {
+                if (i % numPlayers === 0) {
+                    possibleTotals.push(i);
+                }
+            }
+
+            if (possibleTotals.length === 0) {
+                totalTiles = minRange - (minRange % numPlayers) + numPlayers;
+            } else {
+                totalTiles = possibleTotals[getRandomInt(0, possibleTotals.length - 1)];
+            }
+
             const tilesPerPlayer = totalTiles / numPlayers;
 
-            const supplyRatio = 0.40;
-            const disasterRatio = 0.18;
-            const disBonusRatio = 0.15;
+            const supplyRatio = 0.45;
+            const disasterRatio = 0.16;
+            const disBonusRatio = 0.14;
             const bonusRatio = 0.10;
-            
+
             let numSupplies = Math.round(totalTiles * supplyRatio);
+
+            let numFood = Math.round(numSupplies * 0.4) + 3;
+            let numEnt = Math.round(numSupplies * 0.2) + 3;
+            let numWeapons = Math.round(numSupplies * 0.2) + 3;
+            let numTools = Math.max(0, numSupplies - (numFood - 3 + numEnt - 3 + numWeapons - 3)) + 3;
+
+            numSupplies = numFood + numEnt + numWeapons + numTools;
+
             let numDisasters = Math.round(totalTiles * disasterRatio);
             let numDisBonus = Math.round(totalTiles * disBonusRatio);
             let numBonus = Math.round(totalTiles * bonusRatio);
+
             let numEmpty = totalTiles - (numSupplies + numDisasters + numDisBonus + numBonus);
 
-            while (numEmpty < 0) { numSupplies--; numEmpty++; }
+            while (numEmpty < 4) {
+                totalTiles += numPlayers;
+                numEmpty = totalTiles - (numSupplies + numDisasters + numDisBonus + numBonus);
+            }
 
-            const numFood = Math.round(numSupplies * 0.40);
-            const numEnt = Math.round(numSupplies * 0.20);
-            const numWeapons = Math.round(numSupplies * 0.20);
-            const numTools = numSupplies - (numFood + numEnt + numWeapons);
+            const finalTilesPerPlayer = totalTiles / numPlayers;
 
             localStorage.setItem('previousDayNumPlayers', numPlayers.toString());
             localStorage.setItem('isFirstDay', 'false');
@@ -112,13 +135,13 @@ export default function GameSetupModal({
 
             outputHTML = `
                 <div style="margin-bottom: 15px;">
-                    For <strong>${numPlayers} survivors</strong>, use <strong>${totalTiles} total tiles</strong> (${tilesPerPlayer} per player).
+                    For <strong>${numPlayers} survivors</strong>, use <strong>${totalTiles} total tiles</strong> (${finalTilesPerPlayer} per player).
                 </div>
-                
+
                 <ul style="list-style: none; padding: 0; line-height: 1.8; text-align: left;">
-                    
                     <li style="margin-bottom: 5px; border-bottom: 1px solid #dfe6e9; padding-bottom: 5px;">
                         <strong>SUPPLIES (${numSupplies}):</strong>
+
                         <ul style="list-style: none; padding-left: 15px;">
                             <li>🍞 <strong style="color: #e67e22">${numFood} FOOD</strong></li>
                             <li>🎤 <strong style="color: #9b59b6">${numEnt} ENTERTAINMENT</strong></li>
@@ -138,7 +161,6 @@ export default function GameSetupModal({
                     <li>🕳️ <strong style="color: #636e72">${numEmpty} EMPTY</strong></li>
                 </ul>
             `;
-
         } else {
             const supplyTypes = [
                 { name: 'FOOD', icon: '🍞', color: '#e67e22' },
@@ -146,7 +168,7 @@ export default function GameSetupModal({
                 { name: 'WEAPON', icon: '⚔️', color: '#0984e3' },
                 { name: 'TOOL', icon: '🛠️', color: '#f1c40f' }
             ];
-            
+
             const randomTypeIndex = getRandomInt(0, 3);
             const selected = supplyTypes[randomTypeIndex];
 
@@ -156,9 +178,11 @@ export default function GameSetupModal({
             outputHTML = `
                 The night has taken its toll on your supplies.<br/><br/>
                 You must remove <strong>1</strong> random supply tile:<br/><br/>
+
                 <div style="font-size: 1.2em;">
                     ${selected.icon} <strong style="color: ${selected.color}">${selected.name}</strong>
                 </div>
+
                 <br/>
                 from the board before starting Day ${round}.
             `;
@@ -170,16 +194,18 @@ export default function GameSetupModal({
     return (
         <div id="setupModal" className="modal-overlay">
             <div className="modal-content">
-                
                 <h2>{titleText}</h2>
-                <h2 id="modalTitle" style={{fontSize: '1.5rem', marginTop: '0.5rem'}}>{subTitleText}</h2>
+
+                <h2 id="modalTitle" style={{ fontSize: '1.5rem', marginTop: '0.5rem' }}>
+                    {subTitleText}
+                </h2>
+
                 <p>{descText}</p>
-                
+
                 <div className="game-setup-area">
-                    
                     {!showProceed && (
                         <>
-                            <label style={{marginBottom: '10px', display: 'block'}}>
+                            <label style={{ marginBottom: '10px', display: 'block' }}>
                                 How many survivors are joining the apocalypse?
                             </label>
 
@@ -190,7 +216,7 @@ export default function GameSetupModal({
                                         onClick={() => setNumPlayers(count)}
                                         className="button"
                                         style={{
-                                            backgroundColor: numPlayers === count ? '#6c5ce7' : '#dfe6e9', 
+                                            backgroundColor: numPlayers === count ? '#6c5ce7' : '#dfe6e9',
                                             borderColor: numPlayers === count ? '#2d3436' : '#b2bec3',
                                             color: numPlayers === count ? 'white' : '#636e72',
                                             transform: numPlayers === count ? 'scale(1.1)' : 'scale(1)',
@@ -204,11 +230,11 @@ export default function GameSetupModal({
                                 ))}
                             </div>
 
-                            <button 
-                                id="calculateTilesBtn" 
-                                className="button" 
-                                onClick={handleCalculate} 
-                                style={{width: '100%'}}
+                            <button
+                                id="calculateTilesBtn"
+                                className="button"
+                                onClick={handleCalculate}
+                                style={{ width: '100%' }}
                             >
                                 Calculate Board Tiles
                             </button>
@@ -216,15 +242,23 @@ export default function GameSetupModal({
                     )}
 
                     {errorMsg && (
-                        <p className="recommendation-text" style={{ color: '#d63031', borderColor: '#d63031', background: '#fab1a0', display: 'block' }}>
+                        <p
+                            className="recommendation-text"
+                            style={{
+                                color: '#d63031',
+                                borderColor: '#d63031',
+                                background: '#fab1a0',
+                                display: 'block'
+                            }}
+                        >
                             {errorMsg}
                         </p>
                     )}
 
                     {recommendation && !errorMsg && (
-                        <div 
-                            id="boardRecommendation" 
-                            className="recommendation-text" 
+                        <div
+                            id="boardRecommendation"
+                            className="recommendation-text"
                             style={{ display: 'block' }}
                             dangerouslySetInnerHTML={{ __html: recommendation }}
                         />
@@ -244,4 +278,4 @@ export default function GameSetupModal({
             </div>
         </div>
     );
-}   
+}
