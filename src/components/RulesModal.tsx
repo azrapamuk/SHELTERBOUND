@@ -66,7 +66,7 @@ export default function RulesModal({ onClose }: RulesModalProps) {
                     <h2>Player Stats</h2>
                     <p>Each player starts the apocalypse with:</p>
                     <ul>
-                        <li>🏠 <strong>1 Shelter Card</strong> – With 6 supply slots.</li>
+                        <li>🏠 <strong>Shelter</strong> – With 6 supply slots.</li>
                         <li>♟️ <strong>1 Pawn</strong> – Your tiny representative.</li>
                         <li>❤️ <strong>5 Hearts</strong> – Your vitality. Lose them all, and you're out.</li>
                         <li>🤫 <strong>1 Secret Goal Card</strong> – Your hidden path to victory.</li>
