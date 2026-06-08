@@ -143,7 +143,7 @@ const DAY_PHASE_EVENTS: DayEvent[] = [
 ];
 
 const getRandomDuration = () => {
-    return Math.floor(Math.random() * (180 - 120 + 1)); //+ 120;
+    return Math.floor(Math.random() * (180 - 120 + 1));// + 120;
 };
 
 const getRandomInt = (min: number, max: number) => {
@@ -292,7 +292,7 @@ export default function App() {
         const soundInterval = setInterval(() => {
             if (tickSound.current) {
                 tickSound.current.currentTime = 0;
-                tickSound.current.play().catch(() => {});
+                tickSound.current.play().catch(() => { });
             }
         }, tickSpeed);
 
@@ -311,15 +311,16 @@ export default function App() {
     };
 
     const handleStartClick = () => {
-        if (timeLeft < roundDuration && timeLeft > 0 && round > 0) {
+        if (timeLeft > 0 && timeLeft < roundDuration && round > 0) {
+            // Resume pauziranog dana
             if (startSound.current) startSound.current.play();
             setIsActive(true);
         } else {
+            // Novi dan ili nova igra
             const newDuration = getRandomDuration();
 
             setRoundDuration(newDuration);
             setTimeLeft(newDuration);
-
             setScheduledEventTimes(getRandomUniqueEventTimes(newDuration));
             setTriggeredEventTimes([]);
             setUsedEventIdsThisRound([]);
@@ -363,9 +364,8 @@ export default function App() {
     const handleProceedToGame = () => {
         if (savedSound.current) savedSound.current.play();
 
-        if (scheduledEventTimes.length === 0) {
-            setScheduledEventTimes(getRandomUniqueEventTimes(timeLeft));
-        }
+        // Makni if check - uvijek koristi već postavljene scheduledEventTimes
+        // koji su postavljeni u handleStartClick
 
         setShowSetupModal(false);
 
@@ -492,36 +492,36 @@ export default function App() {
             {showRulesModal && <RulesModal onClose={() => setShowRulesModal(false)} />}
 
             {showNeededSupplyModal && neededSupply && (
-    <div className="needed-supply-overlay">
-        <div id="neededSupplyModal">
-            <h1>DAY {round === 0 ? 1 : round} REQUIRED SUPPLY</h1>
+                <div className="needed-supply-overlay">
+                    <div id="neededSupplyModal">
+                        <h1>DAY {round === 0 ? 1 : round} REQUIRED SUPPLY</h1>
 
-            <div className="needed-supply-area">
-                <div className="needed-supply-label">
-                    COLLECT THIS DURING THE ROUND:
-                </div>
+                        <div className="needed-supply-area">
+                            <div className="needed-supply-label">
+                                COLLECT THIS DURING THE ROUND:
+                            </div>
 
-                <div
-                    className={`
+                            <div
+                                className={`
                         supply-name-large
                         ${neededSupply.cssClass}
                         ${neededSupply.name.length > 8 ? 'text-long' : ''}
                     `}
-                >
-                    {neededSupply.name}
-                </div>
-            </div>
+                            >
+                                {neededSupply.name}
+                            </div>
+                        </div>
 
-            <button
-                id="continueNeededSupplyBtn"
-                className="button"
-                onClick={handleCloseNeededSupplyModal}
-            >
-                CONTINUE
-            </button>
-        </div>
-    </div>
-)}
+                        <button
+                            id="continueNeededSupplyBtn"
+                            className="button"
+                            onClick={handleCloseNeededSupplyModal}
+                        >
+                            CONTINUE
+                        </button>
+                    </div>
+                </div>
+            )}
             {showEventModal && activeEvent && (
                 <DayEventModal
                     event={activeEvent}
