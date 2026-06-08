@@ -143,7 +143,7 @@ const DAY_PHASE_EVENTS: DayEvent[] = [
 ];
 
 const getRandomDuration = () => {
-    return Math.floor(Math.random() * (180 - 120 + 1));// + 120;
+    return Math.floor(Math.random() * (180 - 120 + 1)) + 120;
 };
 
 const getRandomInt = (min: number, max: number) => {
